@@ -31,4 +31,14 @@ public class Student{
    public String getEmail(){
         return email;
    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", rollno='" + rollno + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

@@ -3,11 +3,10 @@ package com.project.student.Controller;
 import com.project.student.Entity.Student;
 import com.project.student.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
+import java.util.List;
 
 
 @RequestMapping("/api/student")
@@ -32,5 +31,20 @@ public class StudentController {
         }
 
     }
+     @GetMapping("/get-student")
+    public HashMap<String,String> getStudentData(){
+        HashMap<String,String> response=new HashMap<String,String>();
+        try {
+            List<Student> presentStudent = service.getStudentAllDetails();
+            response.put("message", "Successfully fetched");
+            response.put("stundent", presentStudent.toString());
+            return response;
+        }
+        catch(Exception e){
+            response.put("message","error occured");
+            return  response;
+        }
+     }
+
 
 }
