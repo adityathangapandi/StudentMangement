@@ -31,6 +31,9 @@ public class Student{
    public String getEmail(){
         return email;
    }
+   public long getId(){
+        return id;
+   }
 
     @Override
     public String toString() {
