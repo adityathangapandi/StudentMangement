@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -18,5 +19,16 @@ public class StudentService {
 
     public List<Student> getStudentAllDetails() {
         return repo.findAll();
+    }
+
+    public Boolean  deleteStudentDetails(Long id) {
+        Optional<Student> deleteStudent=repo.findById(id);
+        if(deleteStudent.isEmpty()){
+            throw new RuntimeException("Student details are not available");
+        }
+        else{
+             repo.deleteById(id);
+             return true;
+        }
     }
 }

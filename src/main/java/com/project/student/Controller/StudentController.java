@@ -1,5 +1,4 @@
 package com.project.student.Controller;
-
 import com.project.student.Entity.Student;
 import com.project.student.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,20 @@ public class StudentController {
             response.put("message","error occured");
             return  response;
         }
-     }
+    }
+    @DeleteMapping("/delete-student")
+    public  HashMap<String,Object>  deleteStudent(@RequestParam Long id){
+        HashMap<String,Object> response=new HashMap<String,Object>();
+        try{
 
-
+           Boolean deleteStudent=service.deleteStudentDetails(id);
+            response.put("Message","student details deleted");
+            response.put("Student",deleteStudent);
+            return response;
+        }
+        catch(Exception e){
+            response.put("error",e.getMessage());
+            return response;
+        }
+    }
 }
