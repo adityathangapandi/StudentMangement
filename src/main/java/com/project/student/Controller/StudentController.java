@@ -22,7 +22,7 @@ public class StudentController {
         try{
             Student addStudent=service.addStudentDetails(s);
             response.put("Message","Student details created");
-            response.put("Student",addStudent.getName());
+            response.put("Student",addStudent);
             return response;
         }
         catch(Exception e){
