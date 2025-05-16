@@ -31,4 +31,17 @@ public class StudentService {
              return true;
         }
     }
+    public Student updateStudentDetails(Long id, Student s) {
+        Optional<Student> presentStudent=repo.findById(id);
+        if(presentStudent.isEmpty()){
+            throw new RuntimeException("No Student present with the Id to update");
+        }
+        else{
+            Student needToUpdate=presentStudent.get();
+            needToUpdate.setName(s.getName());
+            needToUpdate.setEmail(s.getEmail());
+            needToUpdate.setRollno(s.getRollno());
+            return repo.save(needToUpdate);
+        }
+    }
 }

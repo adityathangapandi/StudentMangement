@@ -20,12 +20,12 @@ public class StudentController {
         HashMap<String,Object> response=new HashMap<String,Object>();
         try{
             Student addStudent=service.addStudentDetails(s);
-            response.put("Message","Student details created");
+            response.put("message","Student details created");
             response.put("Student",addStudent);
             return response;
         }
         catch(Exception e){
-            response.put("Message","Something is fishy");
+            response.put("message","Something is fishy");
             return response;
         }
 
@@ -50,7 +50,7 @@ public class StudentController {
         try{
 
            Boolean deleteStudent=service.deleteStudentDetails(id);
-            response.put("Message","student details deleted");
+            response.put("message","student details deleted");
             response.put("Student",deleteStudent);
             return response;
         }
@@ -58,5 +58,21 @@ public class StudentController {
             response.put("error",e.getMessage());
             return response;
         }
+    }
+    @PutMapping("/update-student")
+    public HashMap<String,Object> updateStudent(@RequestParam Long id,@RequestBody Student s){
+        HashMap<String,Object> response=new HashMap<String,Object>();
+        try{
+            Student updateStudent=service.updateStudentDetails(id,s);
+            response.put("message","student data updated sucessfully");
+            response.put("updated student",updateStudent);
+            return response;
+        }
+        catch(Exception e){
+
+        response.put("error",e.getMessage());
+        return response;
+        }
+
     }
 }
